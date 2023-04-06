@@ -19,9 +19,9 @@ from merger.composed_chamfer import composed_sqrt_chamfer
 python train.py --subclass 0 \
     --train-data-dir point_cloud/train \
     --val-data-dir point_cloud/val \
-    --n-keypoint 20 \
-    --checkpoint-path merger_k20.pt \
-    --logdir logs/k20
+    --n-keypoint 10 \
+    --checkpoint-path merger_k10.pt \
+    --logdir logs/k10
 """
 
 
@@ -153,6 +153,9 @@ if __name__ == "__main__":
     )
     net = Net(ns.max_points, ns.n_keypoint).to(ns.device)
     optimizer = optim.Adadelta(net.parameters(), eps=1e-2)
+
+    print("Training on", len(x), "samples.")
+    print("Validating on", len(x_test), "samples.")
 
     # Create tensorboard writer
     writer = SummaryWriter(ns.logdir)

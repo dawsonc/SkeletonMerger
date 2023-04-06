@@ -71,10 +71,11 @@ if __name__ == "__main__":
         ax = fig.add_subplot(111, projection='3d')
         ax.scatter(pc[:, 0], pc[:, 1], pc[:, 2], s=1, c='k')
         ax.set_aspect('equal')
+        ax.set_axis_off()
 
         # Visualize the keypoints (also offset by 0.5 to display skeleton alongside)
         ax.scatter(keypoints[0, :, 0], keypoints[0, :, 1], keypoints[0, :, 2], s=15, c='r')
-        ax.scatter(keypoints[0, :, 0] + 0.5, keypoints[0, :, 1], keypoints[0, :, 2], s=15, c='r')
+        ax.scatter(keypoints[0, :, 0] + 0 * 0.5, keypoints[0, :, 1], keypoints[0, :, 2], s=15, c='r')
 
         # Visualize the skeleton
         edge_num = 0
@@ -83,7 +84,7 @@ if __name__ == "__main__":
             for j in range(i):
                 keypoint_j = keypoints[0, j, :]
                 ax.plot(
-                    [keypoint_i[0] + 0.5, keypoint_j[0] + 0.5],
+                    [keypoint_i[0] + 0 * 0.5, keypoint_j[0] + 0 * 0.5],
                     [keypoint_i[1], keypoint_j[1]],
                     [keypoint_i[2], keypoint_j[2]],
                     c='b',

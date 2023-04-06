@@ -3,6 +3,7 @@ original_pc/
 logs/
 10_keypoints/
 20_keypoints/
+v0_small_data/
 *.pt
 
 # Byte-compiled / optimized / DLL files

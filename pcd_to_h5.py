@@ -4,6 +4,7 @@ import os
 import open3d as o3d
 import numpy as np
 import h5py
+from tqdm import tqdm
 
 
 def pc_to_np(pc: o3d.geometry.PointCloud) -> np.ndarray:
@@ -42,7 +43,7 @@ if __name__ == "__main__":
 
     # Convert all files to a single numpy array
     pc_arrays = []
-    for file in files:
+    for file in tqdm(files):
         # Load from PCD file
         pc = o3d.io.read_point_cloud(file)
 
@@ -76,7 +77,9 @@ if __name__ == "__main__":
     val_arrays = pc_arrays[val_indices]
 
     # Convert numpy arrays to h5 file
+    os.makedirs("point_cloud/train", exist_ok=True)
     h5_path = "point_cloud/train/training_data.h5"
     np_to_formatted_hd5(train_arrays, h5_path)
+    os.makedirs("point_cloud/val", exist_ok=True)
     h5_path = "point_cloud/val/validation_data.h5"
     np_to_formatted_hd5(val_arrays, h5_path)
